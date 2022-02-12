@@ -12,12 +12,20 @@ const FilmsSchema = new mongoose.Schema({
         required: true,
         maxlength: [200, '200 Caractères maximum']
     },
-    image: {
+    // image: {
+    //     type: String,
+    //     required: true,
+    //     maxlength: [255, '255 Caractères maximum']
+    // },
+    sortie: {
         type: String,
         required: true,
-        maxlength: [255, '255 Caractères maximum']
     },
-    sortie: {
+    acteur: {
+        type: String,
+        required: true,
+    },
+    realisator: {
         type: String,
         required: true,
     }
