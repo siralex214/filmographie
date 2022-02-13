@@ -68,6 +68,7 @@ function timestampToDate(timestamp) {
 }
 
 export default function Home({films}) {
+    console.log(films)
 
 
     return (
@@ -77,7 +78,11 @@ export default function Home({films}) {
             </Head>
             <Navbar/>
             <Main>
-                {films.data.map(film =>
+                {films.data.length ==0 ? <h2>Pas de film trouver</h2>
+                    :
+
+
+                    films.data.map(film =>
                     <Link key={film.id} href={`/${film._id}/show`}>
                         <OneCard>
                             <Img src={affiche1.src} alt="affiche_film"/>
