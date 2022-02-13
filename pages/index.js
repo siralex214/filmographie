@@ -30,6 +30,7 @@ const Main = styled.main`
     flex-wrap: wrap    
 `
 const OneCard = styled.div`
+    cursor: pointer;
     margin-bottom: 16px;
     padding: 16px;
     border-radius: 25px;
@@ -77,24 +78,24 @@ export default function Home({films}) {
             <Navbar/>
             <Main>
                 {films.data.map(film =>
-                    // <Link>
-                    <OneCard key={film.id}>
-                        <Img src={affiche1.src} alt="affiche_film"/>
-                        <h2>{film.title.substr(0, 15)}</h2>
-                        <h3>{film.acteur.substr(0, 15)}</h3>
-                        <h4>{film.realisator.substr(0, 22)}</h4>
-                        <span>{timestampToDate(parseInt(film.sortie))}</span>
-                        <DivButton>
-                            <Link href={`/${film._id}/edit`}>
-                                <button>Modifier</button>
-                            </Link>
-                            <Link href={`/${film._id}/sup`}>
-                                <button>Supprimer</button>
-                            </Link>
-                        </DivButton>
-                    </OneCard>
-                    // </Link>
-                    )}
+                    <Link key={film.id} href={`/${film._id}/show`}>
+                        <OneCard>
+                            <Img src={affiche1.src} alt="affiche_film"/>
+                            <h2>{film.title.substr(0, 15)}</h2>
+                            <h3>{film.acteur.substr(0, 15)}</h3>
+                            <h4>{film.realisator.substr(0, 22)}</h4>
+                            <span>{timestampToDate(parseInt(film.sortie))}</span>
+                            <DivButton>
+                                <Link href={`/${film._id}/edit`}>
+                                    <button>Modifier</button>
+                                </Link>
+                                <Link href={`/${film._id}/sup`}>
+                                    <button>Supprimer</button>
+                                </Link>
+                            </DivButton>
+                        </OneCard>
+                    </Link>
+                )}
 
             </Main>
         </>
