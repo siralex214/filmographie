@@ -53,11 +53,11 @@ const New = () => {
     const router = useRouter()
     const createFilm = async () => {
         try {
-            const add = await fetch("http://localhost:3000/api/films",{
-                method : "POST",
+            const add = await fetch("http://localhost:3000/api/films", {
+                method: "POST",
                 headers: {
-                    "Accept":"application/json",
-                    "Content-Type":"application/json",
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify(form)
             })
@@ -79,8 +79,7 @@ const New = () => {
                 setIsSubmitted(false)
             }
         }
-    }, [errors,isSubmitted])
-
+    }, [errors, isSubmitted])
 
 
     const handleChange = (event) => {
@@ -125,65 +124,63 @@ const New = () => {
             <Navbar/>
 
             <Main>
-                {
-                    isSubmitted
-                        ? <Loader active inline="centered"/>
-                        : <Form1 method="POST" onSubmit={handleSubmit}>
+                {isSubmitted
+                    ? <Loader active inline="centered"/>
+                    : <Form1 method="POST" onSubmit={handleSubmit}>
 
-                            <input type="text"
-                                   value={form.title}
-                                   placeholder="titre du film"
-                                   name="title"
-                                   onChange={handleChange}
-                            />
-                            <span className="error" id="erreur_title">{errors.title ?
-                                errors.title
-                                : ""}</span>
-                            <textarea
-                                value={form.description}
-                                placeholder='description'
-                                name="description"
-                                onChange={handleChange}
-                            />
-                            <span className="error" id="erreur_description">{errors.description ?
-                                errors.description
-                                : ""}</span>
+                        <input type="text"
+                               value={form.title}
+                               placeholder="titre du film"
+                               name="title"
+                               onChange={handleChange}
+                        />
+                        <span className="error" id="erreur_title">{errors.title ?
+                            errors.title
+                            : ""}</span>
+                        <textarea
+                            value={form.description}
+                            placeholder='description'
+                            name="description"
+                            onChange={handleChange}
+                        />
+                        <span className="error" id="erreur_description">{errors.description ?
+                            errors.description
+                            : ""}</span>
 
-                            <label htmlFor="sortie">date de sortie</label>
-                            <input type="date"
-                                   value={form.sortie}
-                                   name="sortie"
-                                   onChange={handleChange}
+                        <label htmlFor="sortie">date de sortie</label>
+                        <input type="date"
+                               value={form.sortie}
+                               name="sortie"
+                               onChange={handleChange}
 
-                            />
-                            <span className="error" id="erreur_date">{errors.sortie ?
-                                errors.sortie
-                                : ""}</span>
+                        />
+                        <span className="error" id="erreur_date">{errors.sortie ?
+                            errors.sortie
+                            : ""}</span>
 
-                            <input type="text"
-                                   error={errors.realisator}
-                                   value={form.realisator}
-                                   placeholder='réalisateur'
-                                   name="realisator"
-                                   onChange={handleChange}
-                            />
-                            <span className="error" id="erreur_realisator">{errors.realisator ?
-                                errors.realisator
-                                : ""}</span>
-                            <input type="text"
-                                   value={form.acteur}
-                                   placeholder='acteur'
-                                   name="acteur"
-                                   onChange={handleChange}
-                            />
-                            <span className="error" id="erreur_acteur">{errors.acteur ?
-                                errors.acteur
-                                : ""}</span>
-                            <input type="submit"
-                                   value="ajouter le film"
-                            />
-
-                        </Form1>
+                        <input type="text"
+                               error={errors.realisator}
+                               value={form.realisator}
+                               placeholder='réalisateur'
+                               name="realisator"
+                               onChange={handleChange}
+                        />
+                        <span className="error" id="erreur_realisator">{errors.realisator ?
+                            errors.realisator
+                            : ""}</span>
+                        <input type="text"
+                               value={form.acteur}
+                               placeholder='acteur'
+                               name="acteur"
+                               onChange={handleChange}
+                        />
+                        <span className="error" id="erreur_acteur">{errors.acteur ?
+                            errors.acteur
+                            : ""}</span>
+                        <input type="submit"
+                               value="ajouter le film"
+                        />
+                    </Form1>
                 }
             </Main>
 
@@ -192,3 +189,4 @@ const New = () => {
 };
 
 export default New;
+

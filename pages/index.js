@@ -109,7 +109,7 @@ export default function Home({films}) {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const films = await fetch("http://localhost:3000/api/films")
         .then(response => response.json())
     return {
