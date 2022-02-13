@@ -61,6 +61,10 @@ const Sup = ({film}) => {
         const filmId = router.query.id;
         try {
             const deleted = await fetch(`https://filmographie-dxyygktif-siralex214.vercel.app/api/films/${filmId}`, {
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+
+                },
                 method: "Delete"
             });
 
@@ -78,20 +82,26 @@ const Sup = ({film}) => {
             <Navbar/>
 
             <Main>
-                    <div className="suppression">
-                        <p>Voulez vous vraiment supprimer ce contenu?</p>
-                        <div className="buttons">
-                            <Button color='red' onClick={open}>Oui</Button>
-                            <Button color='red' onClick={close}>Non</Button>
-                        </div>
+                <div className="suppression">
+                    <p>Voulez vous vraiment supprimer ce contenu?</p>
+                    <div className="buttons">
+                        <Button color='red' onClick={open}>Oui</Button>
+                        <Button color='red' onClick={close}>Non</Button>
                     </div>
+                </div>
             </Main>
         </>
     );
 };
 
 Sup.getInitialProps = async ({query: {id}}) => {
-    const res = await fetch(`https://filmographie-dxyygktif-siralex214.vercel.app/api/films/${id}`);
+    const res = await fetch(`https://filmographie-dxyygktif-siralex214.vercel.app/api/films/${id}`, {
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+
+        },
+
+    });
     const {data} = await res.json();
 
     return {film: data}

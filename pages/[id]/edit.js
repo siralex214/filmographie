@@ -47,7 +47,6 @@ const Form1 = styled.form`
     `
 
 
-
 const Edit = ({film}) => {
 
     const [form, setForm] = useState({
@@ -76,6 +75,7 @@ const Edit = ({film}) => {
             const res = await fetch(`https://filmographie-dxyygktif-siralex214.vercel.app/api/films/${router.query.id}`, {
                 method: 'PUT',
                 headers: {
+                    "Access-Control-Allow-Origin": "*",
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
@@ -192,7 +192,12 @@ const Edit = ({film}) => {
     );
 };
 Edit.getInitialProps = async ({query: {id}}) => {
-    const res = await fetch(`https://filmographie-dxyygktif-siralex214.vercel.app/api/films/${id}`);
+    const res = await fetch(`https://filmographie-dxyygktif-siralex214.vercel.app/api/films/${id}`, {
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+
+        },
+    });
     const {data} = await res.json();
     return {film: data}
 }
