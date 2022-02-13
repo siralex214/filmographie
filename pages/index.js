@@ -63,12 +63,20 @@ const OneCard = styled.div`
 function timestampToDate(timestamp) {
     let date = new Date(timestamp)
     let dateFinal = date.getUTCDay() + "/" + date.getUTCMonth() + "/" + date.getUTCFullYear()
-
     return dateFinal
 }
 
+
+function transformDate(date) {
+    date = date.replace("-", "/")
+    date = date.replace("-", "/")
+    let newDate = new Date(date)
+    const options = {year: 'numeric', month: 'numeric', day: 'numeric'};
+    newDate = newDate.toLocaleDateString("fr", options)
+    return newDate
+}
+
 export default function Home({films}) {
-    console.log(films)
 
 
     return (
@@ -78,29 +86,29 @@ export default function Home({films}) {
             </Head>
             <Navbar/>
             <Main>
-                {films.data.length ==0 ? <h2>Pas de film trouver</h2>
+                {films.data.length == 0 ? <h2>Pas de film trouver</h2>
                     :
 
 
                     films.data.map(film =>
-                    <Link key={film.id} href={`/${film._id}/show`}>
-                        <OneCard>
-                            <Img src={affiche1.src} alt="affiche_film"/>
-                            <h2>{film.title.substr(0, 15)}</h2>
-                            <h3>{film.acteur.substr(0, 15)}</h3>
-                            <h4>{film.realisator.substr(0, 22)}</h4>
-                            <span>{timestampToDate(parseInt(film.sortie))}</span>
-                            <DivButton>
-                                <Link href={`/${film._id}/edit`}>
-                                    <button>Modifier</button>
-                                </Link>
-                                <Link href={`/${film._id}/sup`}>
-                                    <button>Supprimer</button>
-                                </Link>
-                            </DivButton>
-                        </OneCard>
-                    </Link>
-                )}
+                        <Link key={film.id} href={`/${film._id}/show`}>
+                            <OneCard>
+                                <Img src={affiche1.src} alt="affiche_film"/>
+                                <h2>{film.title.substr(0, 15)}</h2>
+                                <h3>{film.acteur.substr(0, 15)}</h3>
+                                <h4>{film.realisator.substr(0, 22)}</h4>
+                                <span>{transformDate((film.sortie))}</span>
+                                <DivButton>
+                                    <Link href={`/${film._id}/edit`}>
+                                        <button>Modifier</button>
+                                    </Link>
+                                    <Link href={`/${film._id}/sup`}>
+                                        <button>Supprimer</button>
+                                    </Link>
+                                </DivButton>
+                            </OneCard>
+                        </Link>
+                    )}
 
             </Main>
         </>

@@ -68,8 +68,17 @@ const Card = styled.section`
     }
 }
 `
-
 const Show = ({film}) => {
+    function transformDate(date) {
+        date = date.replace("-", "/")
+        date = date.replace("-", "/")
+        console.log(date)
+        let newDate = new Date(date)
+        const options = {year: 'numeric', month: 'numeric', day: 'numeric'};
+        newDate = newDate.toLocaleDateString("fr", options)
+        return newDate
+    }
+
     console.log(film)
     return (
         <>
@@ -85,7 +94,7 @@ const Show = ({film}) => {
                         <h3>{film.realisator}</h3>
                         <h4>{film.acteur}</h4>
                         <h5>{film.description}</h5>
-                        <h6>{film.sortie}</h6>
+                        <h6>{transformDate(film.sortie)}</h6>
                     </div>
                 </Card>
                 <div className="buttons">

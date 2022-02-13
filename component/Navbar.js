@@ -11,18 +11,37 @@ const Nav = styled.nav`
     flex-direction: column;
     
     .sous-div {
-    transition: 0.5s all;
-    color: white;
-    font-size: 32px;
+        transition: 0.5s all;
+        color: white;
+        font-size: 32px;
     }
     .sous-div:hover {
-    transition: 0.5s all;
-    color:red;
+        transition: 0.5s all;
+        color:red;
     }
     
     .test {
-    width: 100%
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 32px;
+    
+        a{
+            color: white;
+            background-color: black;
+            padding: 10px;
+            border-radius: 20px;
+            transition: 0.5s all;
+            
+            :hover{
+                color: black;
+                background-color: white;
+                transition: 0.5s all;
+                transform: scale(1.2)
+            }
+        }
     }
+}
     
 `
 
