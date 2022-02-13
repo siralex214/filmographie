@@ -73,7 +73,7 @@ const Edit = ({film}) => {
 
     const updateFilm = async () => {
         try {
-            const res = await fetch(`http://localhost:3000/api/films/${router.query.id}`, {
+            const res = await fetch(`https://filmographie-dxyygktif-siralex214.vercel.app/api/films/${router.query.id}`, {
                 method: 'PUT',
                 headers: {
                     "Accept": "application/json",
@@ -192,7 +192,7 @@ const Edit = ({film}) => {
     );
 };
 Edit.getInitialProps = async ({query: {id}}) => {
-    const res = await fetch(`http://localhost:3000/api/films/${id}`);
+    const res = await fetch(`https://filmographie-dxyygktif-siralex214.vercel.app/api/films/${id}`);
     const {data} = await res.json();
     return {film: data}
 }
