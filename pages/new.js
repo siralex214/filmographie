@@ -2,24 +2,17 @@ import React, {useEffect, useState} from 'react';
 import Navbar from "../component/Navbar";
 import Head from "next/head";
 import {useRouter} from "next/router";
-import {Form, Input, Loader, TextArea} from "semantic-ui-react";
+import {Loader} from "semantic-ui-react";
 import styled from "styled-components";
-
-const New = () => {
-
-
-    const [form, setForm] = useState({title: '', description: '', image: '', sortie: '', acteur: '', realisator: ''})
-    const [isSubmitted, setIsSubmitted] = useState(false)
-    const [errors, setErrors] = useState({})
-    const router = useRouter()
-    const Main = styled.main`
+// styles
+const Main = styled.main`
     display: flex;
     align-items:center;
     flex-direction: column;
     
    
     `
-    const Form = styled.form`
+const Form1 = styled.form`
     background-color: #77493670;
     padding: 1rem;
     border-radius: 20px;
@@ -46,12 +39,24 @@ const New = () => {
     padding:10px;
     }
     
+    .error{
+    color: red;
+    }
+    
     `
+// end styles
+const New = () => {
+
+
+    const [form, setForm] = useState({title: '', description: '', sortie: '', realisator: '', acteur: ''})
+    const [isSubmitted, setIsSubmitted] = useState(false)
+    const [errors, setErrors] = useState({})
+    const router = useRouter()
 
     useEffect(() => {
         if (isSubmitted) {
             if (Object.keys(errors).length == 0) {
-                // createFilm();
+                createFilm();
                 alert('envoie')
             } else {
                 setIsSubmitted(false)
@@ -59,11 +64,29 @@ const New = () => {
         }
     }, [errors])
 
+    const createFilm = async () => {
+        try {
+            const add = await fetch("http://localhost:3000/api/films",{
+                method : "POST",
+                headers: {
+                    "Accept":"application/json",
+                    "Content-Type":"application/json",
+                },
+                body: JSON.stringify(form)
+            })
+            router.push("/")
+            
+        } catch (error) {
+            console.log(error)
+
+        }
+    }
 
     const handleChange = (event) => {
         setForm({
             ...form,
-            // [event.target.name]: event.target.value
+            [event.target.name]: event.target.value
+
         })
     }
     const handleSubmit = (event) => {
@@ -83,7 +106,7 @@ const New = () => {
         if (!form.acteur) {
             erreurs.acteur = "acteur/trice (s) du film requis"
         }
-        if (!form.sortie) {
+        if (form.sortie == "") {
             erreurs.sortie = "date de sortie du film requis"
         }
         if (!form.description) {
@@ -104,53 +127,57 @@ const New = () => {
                 {
                     isSubmitted
                         ? <Loader active inline="centered"/>
-                        : <Form method="POST" onSubmit={handleSubmit}>
+                        : <Form1 method="POST" onSubmit={handleSubmit}>
 
-                            <Input type="text"
-                                   fluid
-                                   error={errors.title ? {
-                                       content: "Description obligatoire", pointing: "below"
-                                   } : null}
-                                   placeholder='titre du film'
+                            <input type="text" value={form.title}
+                                   placeholder="titre du film"
                                    name="title"
                                    onChange={handleChange}
                             />
-                            <TextArea
-                                fluid
-                                error={errors.description}
+                            <span className="error" id="erreur_title">{errors.title ?
+                                errors.title
+                                : ""}</span>
+                            <textarea
                                 placeholder='description'
                                 name="description"
                                 onChange={handleChange}
                             />
-                            <Input type="date"
-                                   fluid
-                                   error={errors.date}
-                                   label='date de sortie'
+                            <span className="error" id="erreur_description">{errors.description ?
+                                errors.description
+                                : ""}</span>
+
+                            <label htmlFor="sortie">date de sortie</label>
+                            <input type="date"
                                    name="sortie"
                                    onChange={handleChange}
 
                             />
-                            <Input type="text"
-                                   fluid
+                            <span className="error" id="erreur_date">{errors.sortie ?
+                                errors.sortie
+                                : ""}</span>
+
+                            <input type="text"
                                    error={errors.realisator}
                                    placeholder='réalisateur'
                                    name="realisator"
                                    onChange={handleChange}
-
                             />
-                            <Input type="text"
-
-                                   error={errors.acteur}
+                            <span className="error" id="erreur_realisator">{errors.realisator ?
+                                errors.realisator
+                                : ""}</span>
+                            <input type="text"
                                    placeholder='acteur'
                                    name="acteur"
                                    onChange={handleChange}
                             />
-                            <Input type="submit"
-                                   fluid
+                            <span className="error" id="erreur_acteur">{errors.acteur ?
+                                errors.acteur
+                                : ""}</span>
+                            <input type="submit"
                                    value="ajouter le film"
                             />
 
-                        </Form>
+                        </Form1>
                 }
             </Main>
 

@@ -9,7 +9,6 @@ import affiche1 from "../public/affiche_iron-man.png"
 const Img = styled.img`
     width: 140px
 `
-
 const DivButton = styled.div`
 margin-top: 16px;
     display: flex;
@@ -31,6 +30,7 @@ const Main = styled.main`
     flex-wrap: wrap    
 `
 const OneCard = styled.div`
+    margin-bottom: 16px;
     padding: 16px;
     border-radius: 25px;
     display:flex;
@@ -77,6 +77,7 @@ export default function Home({films}) {
             <Navbar/>
             <Main>
                 {films.data.map(film =>
+                    // <Link>
                     <OneCard key={film.id}>
                         <Img src={affiche1.src} alt="affiche_film"/>
                         <h2>{film.title.substr(0, 15)}</h2>
@@ -91,7 +92,9 @@ export default function Home({films}) {
                                 <button>Supprimer</button>
                             </Link>
                         </DivButton>
-                    </OneCard>)}
+                    </OneCard>
+                    // </Link>
+                    )}
 
             </Main>
         </>
