@@ -56,7 +56,6 @@ const New = () => {
             const add = await fetch("https://filmographie-dxyygktif-siralex214.vercel.app/api/films", {
                 method: "POST",
                 headers: {
-                    "Access-Control-Allow-Origin": "*",
                     "Accept": "application/json",
                     "Content-Type": "application/json",
                 },
