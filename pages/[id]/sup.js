@@ -51,13 +51,13 @@ const Sup = ({film}) => {
 
     useEffect(() => {
         if (isDeleting) {
-            deleteNote();
+            deleteFilm();
         }
     }, [isDeleting])
 
     const open = () => setIsDeleting(true);
     const close = () => router.push("/");
-    const deleteNote = async () => {
+    const deleteFilm = async () => {
         const filmId = router.query.id;
         try {
             const deleted = await fetch(`http://localhost:3000/api/films/${filmId}`, {

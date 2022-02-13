@@ -60,12 +60,6 @@ const OneCard = styled.div`
      }
 `
 
-function timestampToDate(timestamp) {
-    let date = new Date(timestamp)
-    let dateFinal = date.getUTCDay() + "/" + date.getUTCMonth() + "/" + date.getUTCFullYear()
-    return dateFinal
-}
-
 
 function transformDate(date) {
     date = date.replace("-", "/")
@@ -91,18 +85,18 @@ export default function Home({films}) {
 
 
                     films.data.map(film =>
-                        <Link key={film.id} href={`/${film._id}/show`}>
-                            <OneCard>
+                        <Link key={film.id} href={`/${film._id}/show`} passHref>
+                            <OneCard key={film.id}>
                                 <Img src={affiche1.src} alt="affiche_film"/>
                                 <h2>{film.title.substr(0, 15)}</h2>
                                 <h3>{film.acteur.substr(0, 15)}</h3>
                                 <h4>{film.realisator.substr(0, 22)}</h4>
                                 <span>{transformDate((film.sortie))}</span>
                                 <DivButton>
-                                    <Link href={`/${film._id}/edit`}>
+                                    <Link href={`/${film._id}/edit`} passHref>
                                         <button>Modifier</button>
                                     </Link>
-                                    <Link href={`/${film._id}/sup`}>
+                                    <Link href={`/${film._id}/sup`} passHref>
                                         <button>Supprimer</button>
                                     </Link>
                                 </DivButton>

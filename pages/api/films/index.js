@@ -2,7 +2,7 @@ import dbConnect from "../../../utils/dbConnect";
 import Films from "../../../models/Films";
 
 dbConnect();
-export default async (req, res) => {
+const requete = async (req, res) => {
     const {method} = req;
 
     switch (method) {
@@ -31,3 +31,5 @@ export default async (req, res) => {
 
     }
 }
+
+export default requete

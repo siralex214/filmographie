@@ -3,7 +3,7 @@ import dbConnect from "../../../utils/dbConnect";
 
 dbConnect();
 
-export default async (req, res) => {
+const requeteId = async (req, res) => {
     const {
         query: {id},
         method
@@ -54,3 +54,4 @@ export default async (req, res) => {
             break
     }
 }
+export default requeteId

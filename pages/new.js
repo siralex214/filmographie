@@ -45,25 +45,12 @@ const Form1 = styled.form`
     
     `
 // end styles
+
 const New = () => {
-
-
     const [form, setForm] = useState({title: '', description: '', sortie: '', realisator: '', acteur: ''})
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [errors, setErrors] = useState({})
     const router = useRouter()
-
-    useEffect(() => {
-        if (isSubmitted) {
-            if (Object.keys(errors).length == 0) {
-                createFilm();
-                alert('envoie')
-            } else {
-                setIsSubmitted(false)
-            }
-        }
-    }, [errors])
-
     const createFilm = async () => {
         try {
             const add = await fetch("http://localhost:3000/api/films",{
@@ -75,12 +62,26 @@ const New = () => {
                 body: JSON.stringify(form)
             })
             router.push("/")
-            
+
         } catch (error) {
             console.log(error)
 
         }
     }
+
+
+    useEffect(() => {
+        if (isSubmitted) {
+            if (Object.keys(errors).length == 0) {
+                createFilm();
+                alert('envoie')
+            } else {
+                setIsSubmitted(false)
+            }
+        }
+    }, [errors,isSubmitted])
+
+
 
     const handleChange = (event) => {
         setForm({
@@ -129,7 +130,8 @@ const New = () => {
                         ? <Loader active inline="centered"/>
                         : <Form1 method="POST" onSubmit={handleSubmit}>
 
-                            <input type="text" value={form.title}
+                            <input type="text"
+                                   value={form.title}
                                    placeholder="titre du film"
                                    name="title"
                                    onChange={handleChange}
@@ -138,6 +140,7 @@ const New = () => {
                                 errors.title
                                 : ""}</span>
                             <textarea
+                                value={form.description}
                                 placeholder='description'
                                 name="description"
                                 onChange={handleChange}
@@ -148,6 +151,7 @@ const New = () => {
 
                             <label htmlFor="sortie">date de sortie</label>
                             <input type="date"
+                                   value={form.sortie}
                                    name="sortie"
                                    onChange={handleChange}
 
@@ -158,6 +162,7 @@ const New = () => {
 
                             <input type="text"
                                    error={errors.realisator}
+                                   value={form.realisator}
                                    placeholder='réalisateur'
                                    name="realisator"
                                    onChange={handleChange}
@@ -166,6 +171,7 @@ const New = () => {
                                 errors.realisator
                                 : ""}</span>
                             <input type="text"
+                                   value={form.acteur}
                                    placeholder='acteur'
                                    name="acteur"
                                    onChange={handleChange}

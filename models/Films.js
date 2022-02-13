@@ -12,11 +12,6 @@ const FilmsSchema = new mongoose.Schema({
         required: true,
         maxlength: [200, '200 Caractères maximum']
     },
-    // image: {
-    //     type: String,
-    //     required: true,
-    //     maxlength: [255, '255 Caractères maximum']
-    // },
     sortie: {
         type: String,
         required: true,
