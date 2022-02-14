@@ -110,7 +110,7 @@ export default function Home({films}) {
 }
 
 export async function getServerSideProps() {
-    const films = await fetch("https://filmographie-dxyygktif-siralex214.vercel.app/api/films")
+    const films = await fetch("https://filmographie.vercel.app/api/films")
         .then(response => response.json())
     return {
         props: {

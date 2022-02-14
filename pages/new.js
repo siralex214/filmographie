@@ -53,7 +53,7 @@ const New = () => {
     const router = useRouter()
     const createFilm = async () => {
         try {
-            const add = await fetch("https://filmographie-dxyygktif-siralex214.vercel.app/api/films", {
+            const add = await fetch("https://filmographie.vercel.app/api/films", {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",

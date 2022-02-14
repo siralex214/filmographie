@@ -110,7 +110,7 @@ const Show = ({film}) => {
     );
 };
 Show.getInitialProps = async ({query: {id}}) => {
-    const res = await fetch(`https://filmographie-dxyygktif-siralex214.vercel.app/api/films/${id}`);
+    const res = await fetch(`https://filmographie.vercel.app/api/films/${id}`);
     const {data} = await res.json();
 
     return {film: data}
