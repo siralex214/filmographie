@@ -103,23 +103,23 @@ const Edit = ({film}) => {
         let erreurs = {};
         if (!form.title) {
             erreurs.title = "titre du film requis"
-        } else if (form.title.value.length < 3) {
+        } else if (form.title.length < 3) {
             erreurs.title = "caractère minimum: 3";
-        } else if (form.title.value.length > 100) {
+        } else if (form.title.length > 100) {
             erreurs.title = "caractère maximal: 100";
         }
         if (!form.realisator) {
             erreurs.realisator = "réalisateur du film requis"
-        } else if (form.realisator.value.length < 3) {
+        } else if (form.realisator.length < 3) {
             erreurs.realisator = "caractère minimum: 3";
-        } else if (form.realisator.value.length > 100) {
+        } else if (form.realisator.length > 100) {
             erreurs.realisator = "caractère maximal: 100";
         }
         if (!form.acteur) {
             erreurs.acteur = "acteur/trice (s) du film requis"
-        } else if (form.acteur.value.length < 3) {
+        } else if (form.acteur.length < 3) {
             erreurs.acteur = "caractère minimum: 3";
-        } else if (form.acteur.value.length > 100) {
+        } else if (form.acteur.length > 100) {
             erreurs.acteur = "caractère maximal: 100";
         }
         if (form.sortie == "") {
@@ -127,9 +127,9 @@ const Edit = ({film}) => {
         }
         if (!form.description) {
             erreurs.description = "description du film requis"
-        } else if (form.description.value.length < 3) {
+        } else if (form.description.length < 3) {
             erreurs.description = "caractère minimum: 3";
-        } else if (form.description.value.length > 500) {
+        } else if (form.description.length > 500) {
             erreurs.description = "caractère maximum: 500";
         }
         return erreurs;
