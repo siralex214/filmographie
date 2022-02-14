@@ -4,7 +4,7 @@ import Head from "next/head";
 import {useRouter} from "next/router";
 import {Loader} from "semantic-ui-react";
 import styled from "styled-components";
-// styles
+import Show from "./[id]/show";
 const Main = styled.main`
     display: flex;
     align-items:center;
@@ -47,13 +47,16 @@ const Form1 = styled.form`
 // end styles
 
 const New = () => {
+
     const [form, setForm] = useState({title: '', description: '', sortie: '', realisator: '', acteur: ''})
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [errors, setErrors] = useState({})
     const router = useRouter()
+
+
     const createFilm = async () => {
         try {
-            const add = await fetch("https://filmographie.vercel.app/api/films", {
+            const add = await fetch("http://localhost:3000/api/films", {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
@@ -83,6 +86,14 @@ const New = () => {
 
 
     const handleChange = (event) => {
+
+        if (event.target.type == "file") {
+
+
+            console.log("file")
+        }
+
+        console.log(event.target.value)
         setForm({
             ...form,
             [event.target.name]: event.target.value
@@ -142,7 +153,7 @@ const New = () => {
             <Main>
                 {isSubmitted
                     ? <Loader active inline="centered"/>
-                    : <Form1 method="POST" onSubmit={handleSubmit}>
+                    : <Form1 method="POST" onSubmit={handleSubmit} enctype="multipart/form-data">
 
                         <input type="text"
                                value={form.title}
@@ -190,6 +201,10 @@ const New = () => {
                                name="acteur"
                                onChange={handleChange}
                         />
+                        <input type="file"
+                               name="image"
+                               onChange={handleChange}
+                        />
                         <span className="error" id="erreur_acteur">{errors.acteur ?
                             errors.acteur
                             : ""}</span>
@@ -203,6 +218,11 @@ const New = () => {
         </>
     );
 };
+
+New.getInitialProps = async () => {
+
+}
+
 
 export default New;
 

@@ -6,6 +6,8 @@ module.exports = {
     experimental: {
         styledComponents: true
     },
+
+
     // async headers() {
     //     return [
     //         {

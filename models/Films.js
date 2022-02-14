@@ -30,7 +30,10 @@ const FilmsSchema = new mongoose.Schema({
         required: true,
         maxlength: [100, '100 Caractères maximum'],
         minlength: [3, '3 Caractères Minimum'],
-    }
+    },
+    image: {
+        type: String,
+        required: true,
+    },
 })
-
 module.exports = mongoose.models.Films || mongoose.model('Films', FilmsSchema)

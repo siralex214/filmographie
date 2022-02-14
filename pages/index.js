@@ -3,7 +3,8 @@ import Link from "next/link";
 import styles from '../styles/Home.module.css'
 import styled from "styled-components";
 import Navbar from "../component/Navbar";
-import affiche1 from "../public/affiche_iron-man.png"
+import affiche1 from "../public/assets/img/affiche_iron-man.png"
+import {useState} from "react";
 
 
 const Img = styled.img`
@@ -110,7 +111,7 @@ export default function Home({films}) {
 }
 
 export async function getServerSideProps() {
-    const films = await fetch("https://filmographie.vercel.app/api/films")
+    const films = await fetch("http://localhost:3000/api/films")
         .then(response => response.json())
     return {
         props: {

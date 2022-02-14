@@ -60,7 +60,7 @@ const Sup = ({film}) => {
     const deleteFilm = async () => {
         const filmId = router.query.id;
         try {
-            const deleted = await fetch(`https://filmographie.vercel.app/api/films/${filmId}`, {
+            const deleted = await fetch(`http://localhost:3000/api/films/${filmId}`, {
                 method: "Delete"
             });
 
@@ -91,7 +91,7 @@ const Sup = ({film}) => {
 };
 
 Sup.getInitialProps = async ({query: {id}}) => {
-    const res = await fetch(`https://filmographie.vercel.app/api/films/${id}`);
+    const res = await fetch(`http://localhost:3000/api/films/${id}`);
     const {data} = await res.json();
 
     return {film: data}
