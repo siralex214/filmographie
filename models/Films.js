@@ -5,24 +5,31 @@ const FilmsSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Veuillez ajouter un titre'],
         unique: true,
-        maxlength: [40, '40 Caractères maximum']
+        maxlength: [100, '100 Caractères maximum'],
+        minlength: [3, '3 Caractères Minimum'],
     },
     description: {
         type: String,
         required: true,
-        maxlength: [200, '200 Caractères maximum']
+        maxlength: [500, '500 Caractères maximum'],
+        minlength: [3, '3 Caractères Minimum'],
     },
     sortie: {
         type: String,
         required: true,
+        maxlength: [10, '10 Caractères maximum'],
     },
     acteur: {
         type: String,
         required: true,
+        maxlength: [100, '100 Caractères maximum'],
+        minlength: [3, '3 Caractères Minimum'],
     },
     realisator: {
         type: String,
         required: true,
+        maxlength: [100, '100 Caractères maximum'],
+        minlength: [3, '3 Caractères Minimum'],
     }
 })
 
