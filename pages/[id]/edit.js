@@ -5,6 +5,7 @@ import Show from "./show";
 import {useRouter} from "next/router";
 import {Loader} from "semantic-ui-react";
 import styled from "styled-components";
+import LinkApi from "../../component/linkApi";
 
 const Main = styled.main`
     display: flex;
@@ -72,7 +73,7 @@ const Edit = ({film}) => {
 
     const updateFilm = async () => {
         try {
-            const res = await fetch(`https://filmographie.vercel.app/api/films/${router.query.id}`, {
+            const res = await fetch(`${LinkApi}${router.query.id}`, {
                 method: 'PUT',
                 headers: {
                     "Accept": "application/json",
@@ -207,7 +208,7 @@ const Edit = ({film}) => {
     );
 };
 Edit.getInitialProps = async ({query: {id}}) => {
-    const res = await fetch(`https://filmographie.vercel.app/api/films/${id}`);
+    const res = await fetch(`${LinkApi}${id}`);
     const {data} = await res.json();
     return {film: data}
 }

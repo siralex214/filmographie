@@ -3,11 +3,13 @@ import Link from "next/link";
 import styles from '../styles/Home.module.css'
 import styled from "styled-components";
 import Navbar from "../component/Navbar";
-import affiche1 from "../public/affiche_iron-man.png"
+import LinkApi from "../component/linkApi";
 
 
 const Img = styled.img`
-    width: 140px
+    width: 140px;
+    height: 140px;
+    border: solid 1px black
 `
 const DivButton = styled.div`
 margin-top: 16px;
@@ -87,7 +89,7 @@ export default function Home({films}) {
                     films.data.map(film =>
                         <Link key={film.id} href={`/${film._id}/show`} passHref>
                             <OneCard key={film.id}>
-                                <Img src={affiche1.src} alt="affiche_film"/>
+                                <Img src="" alt="affiche_film"/>
                                 <h2>{film.title.substr(0, 15)}</h2>
                                 <h3>{film.acteur.substr(0, 15)}</h3>
                                 <h4>{film.realisator.substr(0, 22)}</h4>
@@ -110,7 +112,7 @@ export default function Home({films}) {
 }
 
 export async function getServerSideProps() {
-    const films = await fetch("https://filmographie.vercel.app/api/films")
+    const films = await fetch(LinkApi)
         .then(response => response.json())
     return {
         props: {

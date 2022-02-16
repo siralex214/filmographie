@@ -4,6 +4,7 @@ import Head from "next/head";
 import {useRouter} from "next/router";
 import {Loader} from "semantic-ui-react";
 import styled from "styled-components";
+import LinkApi from "../component/linkApi";
 // styles
 const Main = styled.main`
     display: flex;
@@ -53,7 +54,7 @@ const New = () => {
     const router = useRouter()
     const createFilm = async () => {
         try {
-            const add = await fetch("https://filmographie.vercel.app/api/films", {
+            const add = await fetch(LinkApi, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",

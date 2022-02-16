@@ -5,6 +5,7 @@ import styled from "styled-components";
 import {Button} from "semantic-ui-react";
 import {useRouter} from 'next/router';
 import {useState, useEffect} from 'react';
+import LinkApi from "../../component/linkApi";
 
 const Main = styled.main`
     height: 400px;
@@ -60,7 +61,7 @@ const Sup = ({film}) => {
     const deleteFilm = async () => {
         const filmId = router.query.id;
         try {
-            const deleted = await fetch(`https://filmographie.vercel.app/api/films/${filmId}`, {
+            const deleted = await fetch(`${LinkApi}${filmId}`, {
                 method: "Delete"
             });
 
@@ -91,7 +92,7 @@ const Sup = ({film}) => {
 };
 
 Sup.getInitialProps = async ({query: {id}}) => {
-    const res = await fetch(`https://filmographie.vercel.app/api/films/${id}`);
+    const res = await fetch(`${LinkApi}${id}`);
     const {data} = await res.json();
 
     return {film: data}

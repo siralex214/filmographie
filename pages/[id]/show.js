@@ -3,6 +3,7 @@ import Head from "next/head";
 import Navbar from "../../component/Navbar";
 import styled from "styled-components";
 import Link from "next/link";
+import LinkApi from "../../component/linkApi";
 
 const Main = styled.main`
     border-radius: 20px;
@@ -110,7 +111,7 @@ const Show = ({film}) => {
     );
 };
 Show.getInitialProps = async ({query: {id}}) => {
-    const res = await fetch(`https://filmographie.vercel.app/api/films/${id}`);
+    const res = await fetch(`${LinkApi}${id}`);
     const {data} = await res.json();
 
     return {film: data}
